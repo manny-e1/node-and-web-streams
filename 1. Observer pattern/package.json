@@ -1,0 +1,17 @@
+{
+  "name": "1.-observer-pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index",  
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "28"
+  }
+}
