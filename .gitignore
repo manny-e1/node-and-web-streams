@@ -1,3 +1,6 @@
 node_modules/
 big.file
 coverage/
+*.csv
+*.txt
+*.ndjson
