@@ -6,8 +6,8 @@ import { log } from 'node:console'
 const Connection = sqlite3.verbose()
 const db = new Connection.Database('./data/db')
 
- const seriliazeAsync = promisify(db.serialize.bind(db))
- const runAsync = promisify(db.run.bind(db))
+const seriliazeAsync = promisify(db.serialize.bind(db))
+const runAsync = promisify(db.run.bind(db))
 
 console.time('db-insert')
 await seriliazeAsync
