@@ -6,7 +6,7 @@ import { setInterval } from 'node:timers/promises'
 
 async function * readable(){
     let counter = 0
-    for await (const i of setInterval(200)){
+    for await (const i of setInterval(10)){
         const item = JSON.stringify({
             id: randomUUID(), 
             name: `Manny-${Date.now()}`

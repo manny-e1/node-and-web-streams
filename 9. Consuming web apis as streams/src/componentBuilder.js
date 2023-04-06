@@ -105,7 +105,9 @@ export default class ComponentBuilder {
 
     build(){
         return {
-            screen: this.screen
+            screen: this.screen,
+            form: this.form,
+            table: this.table
         }
     }
 }
