@@ -19,7 +19,7 @@ function createRandomUser(){
 [file1,file2,file3].forEach((file,index)=>{
     const currentFile = `file${index+1}`;
     time(currentFile)
-    for (let i = 0;i<1e4;i++){
+    for (let i = 0;i<1e6;i++){
         file.write(`${JSON.stringify(createRandomUser())}\n`)
     }
     file.end()

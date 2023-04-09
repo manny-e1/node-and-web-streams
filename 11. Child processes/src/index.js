@@ -26,12 +26,22 @@ console.time('child-processes')
             read(){}
         })
 
-        cp.on('message',(msg)=>{
+        cp.on('message',({status,message})=>{
+            if (status === 'error'){
+                log({
+                    msg: 'got an error',
+                    file,
+                    pid: cp.pid,
+                    message: message.split('\n')
+                })
+            stream.push(null)
+            return
+            }
             stream.push(JSON.stringify({
-                ...msg,
+                ...message,
                 file,
                 pid: cp.pid,
-            }))
+            }).concat('\n'))
         })
         cp.send(file)
         return stream
