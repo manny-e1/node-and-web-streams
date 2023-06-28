@@ -5,9 +5,18 @@ export default class View{
     #form = $('form')
     #progress = $('progress')
     #report = $('report')
+    #workerEnabled = $('workerEnabled')
 
     setFileSize(size) {
         this.#fileSize.innerText = `File size: ${size}\n`
+    }
+
+    isWorkerEnabled(){
+        return this.#workerEnabled.checked
+    }
+
+    updateProgress(value){
+        this.#progress.value = value
     }
 
     configureOnFileChange(fn) {
@@ -23,6 +32,7 @@ export default class View{
             const file = this.#csvFile.files[0]
             if (!file){
                 alert('Please select a file')
+                return
             }
             const form = new FormData(e.currentTarget)
             const description = form.get('description')

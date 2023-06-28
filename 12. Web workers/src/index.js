@@ -3,7 +3,6 @@ import Service from './service.js'
 import View from './view.js'
 
 const worker = new Worker('./src/worker.js',{type:"module"})
-worker.postMessage("ayoo")
 
 Controller.init({
     view: new View(),

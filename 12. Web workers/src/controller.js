@@ -34,6 +34,15 @@ export default class Controller {
     }
 
     #configureOnSubmit({description,file}){
-        console.log({description,file})
+        const query = {}
+        query['call description'] = new RegExp(description, 'i')
+        if(this.#view.isWorkerEnabled()){
+            console.log('executing on worker thread')
+            this.#worker.postMessage({file, query})
+            return;
+        }
+        console.log('executing on main thread')
+
     }
+
 }
