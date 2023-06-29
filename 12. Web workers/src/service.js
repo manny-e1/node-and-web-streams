@@ -27,4 +27,29 @@ export default class Service{
             }
         })
     }
+
+    #csvToJSON() {
+        let _delimiter = ','
+        let _columns = ''
+        let _buffer = ''
+        const BREAKLINE_SYMBOL = "\n"
+        const INDEX_NOT_FOUND = -1
+
+        return new TransformStream({
+            transform(chunk,controller) {
+                _buffer = _buffer.concat(chunk)
+                let breaklineIndex = 0
+                while (breaklineIndex !== INDEX_NOT_FOUND){
+                    breaklineIndex = _buffer.indexOf(BREAKLINE_SYMBOL)
+                    if(breaklineIndex === INDEX_NOT_FOUND) break;
+
+                }
+            }
+        })
+
+        function consumeLineData(breaklineIndex) {
+            const lineToProcessIndex = breaklineIndex + BREAKLINE_SYMBOL.length
+            const line = _buffer.slice(0,lineToProcessIndex)
+        }
+    }
 }
