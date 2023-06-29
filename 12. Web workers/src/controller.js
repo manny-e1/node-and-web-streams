@@ -2,10 +2,17 @@ export default class Controller {
     #view
     #service
     #worker
+    #events = {
+        alive(){console.log('alive')},
+        progress: ({total}) => {
+            this.#view.updateProgress(total)
+        },
+        ocurrenceUpdate: (data) => console.log('ocurrenceUpdate', data)
+    }
     constructor({view,service,worker}){
         this.#view = view
         this.#service = service
-        this.#worker = worker
+        this.#worker = this.#configureWorker(worker)
     }
 
     static init(deps){
@@ -18,6 +25,11 @@ export default class Controller {
         this.#view.configureOnFileChange(this.#configureOnFileChange.bind(this))
 
         this.#view.configureOnSubmit(this.#configureOnSubmit.bind(this))
+    }
+
+    #configureWorker(worker){
+        worker.onmessage = ({data}) => this.#events[data.eventType](data)  
+    return worker
     }
 
     #formatBytes(bytes){
